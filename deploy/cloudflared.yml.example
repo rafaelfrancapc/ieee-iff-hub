@@ -1,0 +1,9 @@
+# Exemplo para cloudflared instalado no mesmo sistema que executa o Compose.
+# O túnel e suas credenciais são criados na conta Cloudflare do responsável.
+tunnel: SUBSTITUIR_PELO_UUID_DO_TUNEL
+credentials-file: /etc/cloudflared/SUBSTITUIR_PELO_UUID_DO_TUNEL.json
+
+ingress:
+  - hostname: hub.ieeeiffcampos.com.br
+    service: http://127.0.0.1:8080
+  - service: http_status:404

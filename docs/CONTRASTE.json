@@ -1,0 +1,84 @@
+{
+  "claro": {
+    "ink/paper": 13.21,
+    "muted/panel": 5.89,
+    "link/paper": 5.93,
+    "primaryInk/primary": 6.52
+  },
+  "escuro": {
+    "ink/paper": 15.7,
+    "muted/panel": 7.29,
+    "link/paper": 9.8,
+    "primaryInk/primary": 6.52
+  },
+  "logos": {
+    "ramo.webp": [
+      {
+        "cor": "#0375b0",
+        "contraste_sobre_branco": 5.03
+      },
+      {
+        "cor": "#062a57",
+        "contraste_sobre_branco": 14.22
+      },
+      {
+        "cor": "#0576b2",
+        "contraste_sobre_branco": 4.95
+      }
+    ],
+    "cs.png": [
+      {
+        "cor": "#000000",
+        "contraste_sobre_branco": 21.0
+      },
+      {
+        "cor": "#faa41a",
+        "contraste_sobre_branco": 2.02
+      },
+      {
+        "cor": "#a7a9ac",
+        "contraste_sobre_branco": 2.36
+      }
+    ],
+    "pes.png": [
+      {
+        "cor": "#231f20",
+        "contraste_sobre_branco": 16.3
+      },
+      {
+        "cor": "#221e1f",
+        "contraste_sobre_branco": 16.49
+      },
+      {
+        "cor": "#232020",
+        "contraste_sobre_branco": 16.17
+      }
+    ],
+    "ras.webp": [
+      {
+        "cor": "#98012e",
+        "contraste_sobre_branco": 8.83
+      },
+      {
+        "cor": "#61116a",
+        "contraste_sobre_branco": 11.69
+      }
+    ],
+    "embs.png": [
+      {
+        "cor": "#772483",
+        "contraste_sobre_branco": 8.88
+      },
+      {
+        "cor": "#00619b",
+        "contraste_sobre_branco": 6.6
+      }
+    ]
+  },
+  "generalLogoOnHeader": {
+    "light": 5.03,
+    "dark": 3.14,
+    "whiteSymbolOnBlue": 5.03,
+    "navyBaseOnDarkHeader": 1.11
+  }
+}

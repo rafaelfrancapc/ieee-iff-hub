@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/shell :: head(${pageTitle})}"></head>
+<body>
+<header th:replace="~{fragments/shell :: header}"></header>
+<main id="conteudo" class="container main-content">
+  <div class="page-heading"><h1>Buscar no HUB</h1><p>Encontre um serviço, guia de acesso ou diretoria.</p></div>
+  <form th:replace="~{fragments/shell :: search(${q})}"></form>
+  <nav class="search-tabs" aria-label="Tipo de resultado">
+    <a th:href="@{/busca(q=${q})}" th:attr="aria-current=${selectedType.isEmpty() ? 'page' : null}">Tudo</a>
+    <a th:href="@{/busca(q=${q},tipo='servicos')}" th:attr="aria-current=${selectedType == 'servicos' ? 'page' : null}">Serviços</a>
+    <a th:href="@{/busca(q=${q},tipo='documentos')}" th:attr="aria-current=${selectedType == 'documentos' ? 'page' : null}">Documentos</a>
+    <a th:href="@{/busca(q=${q},tipo='capitulos')}" th:attr="aria-current=${selectedType == 'capitulos' ? 'page' : null}">Capítulos</a>
+  </nav>
+  <p class="result-count" role="status" th:if="${!q.isEmpty()}" th:text="${#lists.size(results)} + (${#lists.size(results) == 1} ? ' resultado para “' : ' resultados para “') + ${q} + '”'"></p>
+  <div class="search-results" th:if="${!results.isEmpty()}"><a class="search-result" th:each="result : ${results}" th:href="${result.path}"><div><h2 th:text="${result.title}"></h2><p th:text="${result.summary}"></p><span class="result-type" th:text="${result.type == 'servicos' ? 'Serviço' : (result.type == 'documentos' ? 'Documento' : 'Diretoria')}"></span></div><svg th:replace="~{fragments/shell :: icon('arrow-up-right')}"></svg></a></div>
+  <section class="empty-state" th:if="${results.isEmpty()}"><svg th:replace="~{fragments/shell :: icon('search')}"></svg><h2 th:text="${q.isEmpty() ? 'O que você procura?' : 'Nenhum resultado encontrado'}"></h2><p th:text="${q.isEmpty() ? 'Busque pelo nome de um recurso ou por um assunto, como conta ou arquivos.' : 'Tente outro termo ou selecione Tudo para ampliar a busca.'}"></p><a class="button button-quiet" th:href="@{/documentos}">Explorar documentos</a></section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

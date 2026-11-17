@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/shell :: head(${pageTitle})}"></head><body>
+<header th:replace="~{fragments/shell :: header}"></header>
+<main id="conteudo" class="container main-content">
+  <section class="home-opening" aria-labelledby="home-title">
+    <div class="opening-copy"><h1 id="home-title">Central de serviços</h1><p>Acessos de trabalho e documentação do IEEE IFF Campos Centro.</p></div>
+    <form th:replace="~{fragments/shell :: search('')}"></form>
+  </section>
+  <section class="home-access" aria-label="Serviços e documentação">
+    <div class="service-directory"><div class="section-heading"><h2>Serviços</h2><a class="text-link" th:href="@{/servicos}">Todos os serviços</a></div><div class="service-grid">
+      <a th:each="service : ${services}" th:if="${!service.linkKey.isEmpty()}" th:href="@{/acessar/{slug}(slug=${service.slug})}" class="service-card" th:classappend="${service.linkKey == 'nextcloud' ? 'service-card-primary' : ''}">
+        <div class="service-card-title"><svg th:replace="~{fragments/shell :: icon(${service.linkKey == 'nextcloud' ? 'folder' : (service.linkKey == 'account' ? 'user' : (service.linkKey == 'repositories' ? 'code' : (service.linkKey == 'inventory' ? 'folder' : 'book')))})}"></svg><h2 th:text="${service.title}"></h2><svg th:replace="~{fragments/shell :: icon('arrow-up-right')}"></svg></div>
+        <p th:text="${service.summary}"></p>
+        <div class="service-card-meta"><span th:text="${service.access}"></span><span th:text="${service.state}"></span></div>
+      </a>
+    </div></div>
+    <div class="public-documents">
+      <div class="section-heading compact"><h2>Documentação pública</h2><a class="text-link" th:href="@{/documentos}">Ver todos<svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a></div>
+      <a class="document-link" th:each="document : ${documents}" th:href="@{/documentos/{slug}(slug=${document.slug})}">
+        <svg th:replace="~{fragments/shell :: icon('file')}"></svg><span><strong th:text="${document.title}"></strong><small th:text="${document.category}"></small></span><svg th:replace="~{fragments/shell :: icon('arrow-up-right')}"></svg>
+      </a>
+      <a class="faq-access" th:href="@{/ajuda}"><svg th:replace="~{fragments/shell :: icon('help')}"></svg><span>Dúvidas sobre acesso?<strong>Consultar perguntas frequentes</strong></span><svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a>
+    </div>
+  </section>
+  <section class="home-chapters" aria-labelledby="chapter-heading">
+    <div class="section-heading"><h2 id="chapter-heading">Diretorias dos capítulos</h2><a class="text-link" th:href="@{/capitulos}">Consultar diretorias<svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a></div>
+    <div class="chapter-grid">
+      <a class="chapter-card" th:each="chapter : ${chapters}" th:href="@{/capitulos/{slug}(slug=${chapter.slug})}">
+        <div class="logo-plate" th:classappend="'logo-' + ${chapter.slug}"><img th:src="@{/assets/brand/{logo}(logo=${chapter.logo})}" th:alt="'Logo IEEE ' + ${chapter.acronym}" width="240" height="100"></div>
+        <div class="chapter-card-label"><span th:text="${chapter.acronym}"></span><svg th:replace="~{fragments/shell :: icon('arrow-up-right')}"></svg></div>
+        <small th:text="${chapter.state.isEmpty() ? 'Diretoria e responsáveis' : chapter.state}"></small>
+      </a>
+    </div>
+  </section>
+</main><footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

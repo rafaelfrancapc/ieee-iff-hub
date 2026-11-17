@@ -1,0 +1,29 @@
+services:
+  hub:
+    build: .
+    image: ieee-iff-hub:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      HUB_NEXTCLOUD_URL: ${HUB_NEXTCLOUD_URL:-https://nuvem.ieeeiffcampos.com.br}
+      HUB_WEBSITE_URL: ${HUB_WEBSITE_URL:-}
+      HUB_SUPPORT_EMAIL: ${HUB_SUPPORT_EMAIL:-}
+      HUB_REPOSITORIES_URL: ${HUB_REPOSITORIES_URL:-https://gitlab.ieeeiffcampos.com.br}
+      HUB_ACCOUNT_URL: ${HUB_ACCOUNT_URL:-https://sso.ieeeiffcampos.com.br}
+      HUB_INVENTORY_URL: ${HUB_INVENTORY_URL:-}
+      HUB_INTERNAL_DOCS_URL: ${HUB_INTERNAL_DOCS_URL:-}
+    mem_limit: 640m
+    cpus: 1.0
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,127 @@
+catalogo:
+  services:
+    - slug: nuvem
+      title: Nuvem e arquivos
+      summary: Arquivos compartilhados, pastas de equipe e acervo do Ramo.
+      category: Arquivos
+      state: Em uso
+      access: Conta do Ramo
+      source: Acesso aos arquivos conforme as permissões da sua equipe.
+      content: nuvem.md
+      link-key: nextcloud
+    - slug: repositorios
+      title: Repositórios
+      summary: Código, documentação técnica e colaboração entre equipes.
+      category: Desenvolvimento
+      state: Serviço futuro
+      access: Conta do Ramo
+      source: O GitLab será instalado no endereço reservado para repositórios.
+      content: repositorios.md
+      link-key: repositories
+    - slug: conta
+      title: Minha conta
+      summary: Perfil, senha e configurações da sua conta local.
+      category: Identidade
+      state: Em uso
+      access: Conta do Ramo
+      source: A identidade local é independente da conta internacional IEEE.
+      content: conta.md
+      link-key: account
+    - slug: documentacao-interna
+      title: Documentação interna
+      summary: Manuais, registros e documentos com acesso restrito.
+      category: Documentação
+      state: Em preparação
+      access: Conta do Ramo
+      source: Os documentos internos seguem as permissões de cada equipe.
+      content: documentacao-interna.md
+      link-key: internal-docs
+    - slug: patrimonio
+      title: Patrimônio
+      summary: Localização física de móveis, equipamentos e materiais do Ramo.
+      category: Administração
+      state: Módulo com acesso restrito
+      access: Conta do Ramo
+      source: Consulta por membros; edição pela diretoria e administração de contas por administradores.
+      content: patrimonio.md
+      link-key: inventory
+    - slug: biblioteca
+      title: Documentação pública
+      summary: Guias de acesso, uso dos serviços e documentos de referência.
+      category: Documentação
+      state: Disponível no HUB
+      access: Público
+      source: Consulta pública, sem necessidade de conta.
+      content: biblioteca.md
+      external-url: /documentos
+  documents:
+    - slug: primeiro-acesso
+      title: Primeiro acesso
+      summary: Como solicitar sua conta e acessar os serviços internos.
+      category: Acesso
+      state: Guia de acesso
+      access: Público
+      source: Orientações de acesso aos serviços do Ramo.
+      content: primeiro-acesso.md
+    - slug: arquivos
+      title: Organização dos arquivos
+      summary: Pastas de equipe, permissões e compartilhamento de documentos.
+      category: Serviços
+      state: Guia de uso
+      access: Público
+      source: As permissões são definidas pela gestão de cada equipe.
+      content: arquivos.md
+    - slug: conta
+      title: Conta e recuperação de acesso
+      summary: Onde gerenciar sua conta local e recuperar o acesso.
+      category: Acesso
+      state: Guia de acesso
+      access: Público
+      source: O HUB direciona ao serviço de identidade e não recebe senhas.
+      content: conta.md
+    - slug: regimento
+      title: Regimento interno
+      summary: Documento de referência para a organização e as atribuições do Ramo.
+      category: Referência
+      state: Versão a confirmar
+      access: Público
+      source: Texto fornecido; versão e aprovação precisam de confirmação.
+      content: regimento.md
+  chapters:
+    - slug: pes
+      acronym: PES
+      name: Power & Energy Society
+      state: ""
+      logo: pes.png
+      officers:
+        - { role: Chair, name: Erick Henriques Freitas Ribeiro }
+        - { role: Vice-Chair, name: Cleyferson Bispo de Farias }
+        - { role: Secretary, name: Matheus Gonçalves Gomes }
+        - { role: Treasurer, name: M_Gregorio }
+    - slug: ras
+      acronym: RAS
+      name: Robotics & Automation Society
+      state: ""
+      logo: ras.webp
+      officers:
+        - { role: Chair, name: Alice Vitória }
+        - { role: Vice-Chair, name: Danilo Monteiro de Oliveira }
+    - slug: cs
+      acronym: CS
+      name: Computer Society
+      state: ""
+      logo: cs.png
+      officers:
+        - { role: Chair, name: Kaynan Leal de Araujo Barbosa }
+        - { role: Vice-Chair, name: Julia Victoria Costa }
+        - { role: Secretary, name: Giovana de Castro Daher }
+        - { role: Webmaster / Comunicação, name: Guilherme Rodrigues de Sousa }
+    - slug: embs
+      acronym: EMBS
+      name: Engineering in Medicine & Biology Society
+      state: Em fundação
+      logo: embs.png
+      officers:
+        - { role: Vice-Chair, name: Julia Victoria Costa }
+        - { role: Secretary, name: Andryck Santiago }
+        - { role: Treasurer, name: Pablo de Farias Dantier }

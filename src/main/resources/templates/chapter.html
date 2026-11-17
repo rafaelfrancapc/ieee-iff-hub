@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/shell :: head(${pageTitle})}"></head><body>
+<header th:replace="~{fragments/shell :: header}"></header>
+<main id="conteudo" class="container main-content">
+  <nav class="breadcrumb" aria-label="Localização"><a th:href="@{/capitulos}">Diretorias</a><span aria-hidden="true">/</span><span th:text="${chapter.acronym}"></span></nav>
+  <div class="chapter-page-header">
+    <div class="logo-plate chapter-detail-logo" th:classappend="'logo-' + ${chapter.slug}"><img th:src="@{/assets/brand/{logo}(logo=${chapter.logo})}" th:alt="'Logo IEEE ' + ${chapter.acronym}" width="240" height="100"></div>
+    <div><h1 th:text="${chapter.acronym}"></h1><p class="chapter-full-name" th:text="${chapter.name}"></p><span class="status-label" th:if="${!chapter.state.isEmpty()}" th:text="${chapter.state}"></span></div>
+  </div>
+  <div class="directory-detail-layout">
+    <section class="officer-directory" aria-labelledby="officers-heading">
+      <h2 id="officers-heading">Diretoria</h2>
+      <dl><div th:each="officer : ${chapter.officers}"><dt th:text="${officer.role}"></dt><dd th:text="${officer.name}"></dd></div></dl>
+      <p class="source-note">Dados informados para o piloto. A vigência e os cargos não preenchidos devem ser confirmados com a gestão.</p>
+    </section>
+    <aside class="chapter-access"><h2>Acessos do capítulo</h2><a class="document-link" th:href="@{/servicos/nuvem}"><svg th:replace="~{fragments/shell :: icon('folder')}"></svg><span>Arquivos compartilhados</span><svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a><a class="document-link" th:href="@{/servicos/documentacao-interna}"><svg th:replace="~{fragments/shell :: icon('book')}"></svg><span>Documentação interna</span><svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a><a class="document-link" th:href="@{/ajuda}"><svg th:replace="~{fragments/shell :: icon('help')}"></svg><span>Ajuda de acesso</span><svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a></aside>
+  </div>
+</main><footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

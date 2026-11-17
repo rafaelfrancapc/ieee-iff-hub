@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
+  <meta name="description" content="Acesso aos serviços, documentação e diretorias dos capítulos do IEEE IFF Campos Centro.">
+  <title th:text="${title} + ' | HUB IEEE IFF'">HUB IEEE IFF</title>
+  <script th:src="@{/assets/theme-init.js}"></script>
+  <link rel="icon" th:href="@{/assets/brand/ramo.webp}" type="image/webp">
+  <link rel="stylesheet" th:href="@{/assets/tokens.css}"><link rel="stylesheet" th:href="@{/assets/base.css}"><link rel="stylesheet" th:href="@{/assets/hub.css}">
+  <script th:src="@{/assets/hub.js}" defer></script>
+</head><body>
+<svg th:fragment="icon(name)" class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use th:href="|@{/assets/icons.svg}#${name}|"></use></svg>
+<header th:fragment="header" class="site-header">
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="container header-inner">
+    <a class="brand" th:href="@{/}" aria-label="HUB IEEE IFF, início"><img class="branch-logo" th:src="@{/assets/brand/ramo.webp}" alt="" width="52" height="52"><span class="brand-text"><span class="brand-name">IEEE IFF</span><span class="brand-campus">Campos Centro</span></span></a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Navegação principal">
+      <a th:href="@{/}" th:attr="aria-current=${activePage == 'inicio' ? 'page' : null}">Início</a>
+      <a th:href="@{/servicos}" th:attr="aria-current=${activePage == 'servicos' ? 'page' : null}">Serviços</a>
+      <a th:href="@{/documentos}" th:attr="aria-current=${activePage == 'documentos' ? 'page' : null}">Documentação</a>
+      <a th:href="@{/capitulos}" th:attr="aria-current=${activePage == 'capitulos' ? 'page' : null}">Capítulos</a>
+      <a th:href="@{/repositorios}">Repositórios</a>
+      <a class="mobile-help" th:href="@{/ajuda}" th:attr="aria-current=${activePage == 'ajuda' ? 'page' : null}">Ajuda</a>
+    </nav>
+    <div class="header-actions">
+      <a class="help-link" th:href="@{/ajuda}" th:attr="aria-current=${activePage == 'ajuda' ? 'page' : null}">Ajuda</a>
+      <details class="theme-picker" data-theme-picker><summary class="icon-button" aria-label="Alterar tema" title="Alterar tema"><svg th:replace="~{fragments/shell :: icon('contrast')}"></svg></summary><div class="theme-options" role="group" aria-label="Tema da interface">
+        <button type="button" data-theme-value="light" aria-pressed="false"><svg th:replace="~{fragments/shell :: icon('sun')}"></svg>Claro</button>
+        <button type="button" data-theme-value="dark" aria-pressed="false"><svg th:replace="~{fragments/shell :: icon('moon')}"></svg>Escuro</button>
+        <button type="button" data-theme-value="system" aria-pressed="true"><svg th:replace="~{fragments/shell :: icon('monitor')}"></svg>Sistema</button>
+        <noscript><p>A seleção manual de tema precisa de JavaScript. O tema do sistema continua funcionando.</p></noscript>
+      </div></details>
+      <a class="button button-small header-account" th:href="@{/acessar/conta}" aria-label="Minha conta"><svg th:replace="~{fragments/shell :: icon('user')}"></svg><span>Minha conta</span></a>
+      <button class="icon-button menu-toggle" type="button" data-nav-toggle aria-controls="primary-nav" aria-expanded="false" aria-label="Abrir navegação" hidden><svg th:replace="~{fragments/shell :: icon('menu')}"></svg></button>
+    </div>
+  </div>
+</header>
+<footer th:fragment="footer" class="site-footer"><div class="container footer-inner"><span class="footer-name">IEEE IFF Campos Centro<span class="footer-caption">Hub de serviços</span></span><div class="footer-links"><a th:if="${hub != null and hub.websiteConfigured()}" th:href="${hub.websiteUrl}" target="_blank" rel="noopener noreferrer">Site institucional<svg th:replace="~{fragments/shell :: icon('external')}"></svg></a><a th:href="@{/ajuda}">Ajuda de acesso</a></div></div></footer>
+<form th:fragment="search(value)" class="search-form" th:action="@{/busca}" method="get" role="search"><label for="hub-search" class="visually-hidden">Buscar no HUB</label><svg th:replace="~{fragments/shell :: icon('search')}"></svg><input id="hub-search" name="q" type="search" maxlength="200" placeholder="Buscar serviços e documentação" th:value="${value}" autocomplete="off"><button type="submit" class="search-submit" aria-label="Buscar"><svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></button></form>
+</body></html>

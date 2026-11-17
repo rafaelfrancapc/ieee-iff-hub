@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/shell :: head(${pageTitle})}"></head><body>
+<header th:replace="~{fragments/shell :: header}"></header>
+<main id="conteudo" class="container main-content">
+  <div class="page-heading"><h1>Diretorias dos capítulos</h1><p>Responsáveis e funções informadas para cada capítulo.</p></div>
+  <div class="chapter-directory">
+    <a class="chapter-directory-row" th:each="chapter : ${chapters}" th:href="@{/capitulos/{slug}(slug=${chapter.slug})}">
+      <div class="logo-plate" th:classappend="'logo-' + ${chapter.slug}"><img th:src="@{/assets/brand/{logo}(logo=${chapter.logo})}" th:alt="'Logo IEEE ' + ${chapter.acronym}" width="240" height="100"></div>
+      <div><h2 th:text="${chapter.acronym}"></h2><p th:text="${chapter.name}"></p><small th:if="${!chapter.state.isEmpty()}" th:text="${chapter.state}"></small></div>
+      <span class="text-link">Consultar diretoria<svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></span>
+    </a>
+  </div>
+</main><footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/shell :: head(${pageTitle})}"></head>
+<body>
+<header th:replace="~{fragments/shell :: header}"></header>
+<main id="conteudo" class="container main-content">
+  <div class="page-heading"><h1>Como podemos ajudar?</h1><p>Orientações para encontrar recursos e resolver questões de acesso.</p></div>
+  <div class="help-layout">
+    <div class="help-questions">
+      <details open><summary>Como solicito uma conta?<svg th:replace="~{fragments/shell :: icon('chevron-down')}"></svg></summary><div><p>Procure a Gestão de Pessoas ou a diretoria do seu capítulo. Informe de quais equipes participa para que as permissões sejam definidas.</p><a class="text-link" th:href="@{/documentos/primeiro-acesso}">Ler o guia de primeiro acesso<svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a></div></details>
+      <details><summary>Por que não consigo abrir uma pasta?<svg th:replace="~{fragments/shell :: icon('chevron-down')}"></svg></summary><div><p>O acesso depende dos grupos da sua conta. Peça ao responsável da equipe para revisar a permissão. Não use a conta de outra pessoa para acessar um arquivo.</p></div></details>
+      <details><summary>Esqueci minha senha. O que faço?<svg th:replace="~{fragments/shell :: icon('chevron-down')}"></svg></summary><div><p>A recuperação por e-mail ainda está em configuração. Procure a diretoria ou o suporte do Ramo para recuperar o acesso. Nunca envie sua senha por mensagem.</p></div></details>
+      <details><summary>Como compartilho arquivos com minha equipe?<svg th:replace="~{fragments/shell :: icon('chevron-down')}"></svg></summary><div><p>Utilize a pasta de trabalho do capítulo ou projeto. Confira as permissões e o conteúdo antes de criar um link externo.</p><a class="text-link" th:href="@{/documentos/arquivos}">Consultar a organização dos arquivos<svg th:replace="~{fragments/shell :: icon('arrow-right')}"></svg></a></div></details>
+      <details><summary>Encontrei uma informação desatualizada.<svg th:replace="~{fragments/shell :: icon('chevron-down')}"></svg></summary><div><p>Informe o título da página e o que precisa de revisão à secretaria ou ao responsável pelo capítulo. Dados de diretoria e endereços dos serviços podem precisar de revisão.</p></div></details>
+
+    </div>
+    <aside class="help-contact"><h2>Fale com o Ramo</h2><p>Ao pedir ajuda, informe a página ou serviço e descreva o que aconteceu. Evite enviar arquivos com dados pessoais.</p><a th:if="${hub.supportConfigured()}" class="button button-quiet" th:href="'mailto:' + ${hub.supportEmail}">Enviar e-mail<svg th:replace="~{fragments/shell :: icon('mail')}"></svg></a><p th:unless="${hub.supportConfigured()}" class="contact-note">O canal de suporte será informado pela gestão. Por enquanto, procure a diretoria do seu capítulo.</p></aside>
+  </div>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

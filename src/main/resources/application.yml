@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: ieee-iff-hub
+  config:
+    import: classpath:catalogo.yml
+  thymeleaf:
+    cache: true
+  web:
+    resources:
+      chain:
+        strategy:
+          content:
+            enabled: true
+            paths: /assets/**
+      cache:
+        cachecontrol:
+          max-age: 1h
+          cache-public: true
+
+server:
+  port: ${PORT:8080}
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript,image/svg+xml
+  tomcat:
+    threads:
+      max: 24
+      min-spare: 2
+  error:
+    include-message: never
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+hub:
+  nextcloud-url: ${HUB_NEXTCLOUD_URL:https://nuvem.ieeeiffcampos.com.br}
+  website-url: ${HUB_WEBSITE_URL:}
+  support-email: ${HUB_SUPPORT_EMAIL:}
+  repositories-url: ${HUB_REPOSITORIES_URL:https://gitlab.ieeeiffcampos.com.br}
+  account-url: ${HUB_ACCOUNT_URL:https://sso.ieeeiffcampos.com.br}
+  internal-docs-url: ${HUB_INTERNAL_DOCS_URL:}
+  inventory-url: ${HUB_INVENTORY_URL:}

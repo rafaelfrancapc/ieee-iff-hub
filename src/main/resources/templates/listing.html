@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/shell :: head(${pageTitle})}"></head><body>
+<header th:replace="~{fragments/shell :: header}"></header>
+<main id="conteudo" class="container main-content">
+<div class="page-heading"><h1 th:text="${pageTitle}"></h1><p th:text="${description}"></p></div>
+<form class="filter-bar" method="get" th:action="@{/{collection}(collection=${collection})}" role="search">
+<div class="filter-search"><label for="catalog-query" class="visually-hidden" th:text="'Buscar em ' + ${pageTitle}"></label><svg th:replace="~{fragments/shell :: icon('search')}"></svg><input id="catalog-query" type="search" name="q" maxlength="200" placeholder="Buscar neste catálogo" th:value="${q}"></div>
+<label class="select-control"><span class="visually-hidden">Categoria</span><select name="categoria" aria-label="Categoria"><option value="">Todas as categorias</option><option th:each="category : ${categories}" th:value="${category}" th:text="${category}" th:selected="${category == selectedCategory}"></option></select></label>
+<button class="button button-quiet" type="submit">Filtrar</button><a class="clear-link" th:if="${!q.isEmpty() or !selectedCategory.isEmpty()}" th:href="@{/{collection}(collection=${collection})}">Limpar</a>
+</form>
+<p class="result-count" role="status" th:text="${#lists.size(entries)} + (${#lists.size(entries) == 1} ? ' recurso' : ' recursos')"></p>
+<div class="catalog-list" th:if="${!entries.isEmpty()}">
+<a class="catalog-row" th:each="entry : ${entries}" th:href="@{/{collection}/{slug}(collection=${collection},slug=${entry.slug})}"><div class="catalog-icon"><svg th:replace="~{fragments/shell :: icon(${collection == 'documentos' ? 'file' : 'grid'})}"></svg></div><div class="catalog-row-content"><h2 th:text="${entry.title}"></h2><p th:text="${entry.summary}"></p><div class="inline-meta"><span th:text="${entry.category}"></span><span th:text="${entry.access}"></span></div></div><span class="status-label" th:text="${entry.state}"></span><svg th:replace="~{fragments/shell :: icon('arrow-up-right')}"></svg></a>
+</div>
+<section class="empty-state" th:if="${entries.isEmpty()}"><svg th:replace="~{fragments/shell :: icon('search')}"></svg><h2>Nenhum recurso encontrado</h2><p>Tente outro termo ou remova os filtros para ver o catálogo completo.</p><a class="button button-quiet" th:href="@{/{collection}(collection=${collection})}">Ver catálogo completo</a></section>
+<p class="catalog-note" th:if="${collection == 'documentos'}">Arquivos internos são acessados pelo serviço correspondente, conforme as permissões da conta.</p>
+</main><footer th:replace="~{fragments/shell :: footer}"></footer></body></html>
